@@ -28,7 +28,7 @@ verb1 = {
         },
     'ichidan': {
         'いじめる': 'to bully',
-        '着替える': 'to change clothes'
+        '着替える': 'to change clothes',
         '貯める':'to save money',
         '続ける': 'to continue',
         '褒める': 'to praise',
