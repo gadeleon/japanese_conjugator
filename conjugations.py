@@ -54,3 +54,17 @@ def godan_passive(word):
     base = word.decode('utf-8')[:-1].encode('utf-8')
     snd = godan_pas_caus_sound(word.decode('utf-8')[-1].encode('utf-8'))
     return '{}{}{}'.format(base,snd,'れる')
+
+def irregular_passive(word):
+    '''
+    Takes an irregular verb and conjugates to passive form
+    '''
+    base = word.decode('utf-8')[:-2].encode('utf-8')
+    ireg = word.decode('utf-8')[-2:].encode('utf-8')
+    if ireg == 'する':
+        end = 'される'
+    elif ireg == '来る':
+        end = '来られる'
+    elif ireg == 'くる':
+        end = 'こられる'
+    return '{}{}'.format(base, end)
