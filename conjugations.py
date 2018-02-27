@@ -11,6 +11,13 @@ def ichidan_pot_pas(word):
     stem = word.decode('utf-8')[:-1].encode('utf-8')
     return '{}{}'.format(stem, 'られる')
 
+def ichidan_causitive(word):
+    '''
+    Takes ichidan verb and conjugates to causitive form
+    '''
+    stem = word.decode('utf-8')[:-1].encode('utf-8')
+    return '{}{}'.format(stem, 'させる')    
+
 def godan_pas_caus_sound(syl):
     '''
     Terrible if/else block to change the sound of a godan verb to the 
@@ -55,6 +62,14 @@ def godan_passive(word):
     snd = godan_pas_caus_sound(word.decode('utf-8')[-1].encode('utf-8'))
     return '{}{}{}'.format(base,snd,'れる')
 
+def godan_causitive(word):
+    '''
+    Takes a Godan verb and conjugates to its passive form.
+    '''
+    base = word.decode('utf-8')[:-1].encode('utf-8')
+    snd = godan_pas_caus_sound(word.decode('utf-8')[-1].encode('utf-8'))
+    return '{}{}{}'.format(base,snd,'せる')
+
 def irregular_passive(word):
     '''
     Takes an irregular verb and conjugates to passive form
@@ -67,4 +82,18 @@ def irregular_passive(word):
         end = '来られる'
     elif ireg == 'くる':
         end = 'こられる'
+    return '{}{}'.format(base, end)
+
+def irregular_causitive(word):
+    '''
+    Takes an irregular verb and conjugates to passive form
+    '''
+    base = word.decode('utf-8')[:-2].encode('utf-8')
+    ireg = word.decode('utf-8')[-2:].encode('utf-8')
+    if ireg == 'する':
+        end = 'させる'
+    elif ireg == '来る':
+        end = '来させる'
+    elif ireg == 'くる':
+        end = 'こさせる'
     return '{}{}'.format(base, end)
