@@ -46,3 +46,16 @@ verb1 = {
 
 
 }
+
+verb2 = {
+    'godan': {
+    '風が吹く' : 'the wind blows',
+    '勝つ' : 'to win',
+    'コピーを取る' : 'to make a photocopy',
+    '運ぶ' : 'to carry',
+    '走る' : 'to run',
+    '拾う' : 'to pick up',
+    'ほっておく' : 'to leave (someone/something) alone; to neglect (uses を)',
+    '間に合う' : 'to be in time (〜に)'
+    }
+}
