@@ -65,6 +65,11 @@ verb2 = {
         '負ける' : 'to lose (a match) (〜に)'
     },
     'irregular' : {
-        ''
+        'お願いする' : 'to pray for help (person に〜を)',
+        '賛成する' : 'to agree (〜に)',
+        '失敗する' : 'to fail; to be unsuccessful',
+        '徹夜する' : 'to stay up all night',
+        '反対する' : 'to oppose; to object to (〜に)',
+        '翻訳する' : 'to translate (〜を)'
     }
 }
