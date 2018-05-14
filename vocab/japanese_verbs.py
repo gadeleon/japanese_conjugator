@@ -46,3 +46,30 @@ verb1 = {
 
 
 }
+
+verb2 = {
+    'godan': {
+        '風が吹く' : 'the wind blows',
+        '勝つ' : 'to win',
+        'コピーを取る' : 'to make a photocopy',
+        '運ぶ' : 'to carry',
+        '走る' : 'to run',
+        '拾う' : 'to pick up',
+        'ほっておく' : 'to leave (someone/something) alone; to neglect (uses を)',
+        '間に合う' : 'to be in time (〜に)'
+    },
+    'ichidan' : {
+        '計画を立てる' : 'to make a plan',
+        '育てる' : 'to raise; to bring up (〜を)',
+        '助ける' : 'to help; to rescue ( 〜を)',
+        '負ける' : 'to lose (a match) (〜に)'
+    },
+    'irregular' : {
+        'お願いする' : 'to pray for help (person に〜を)',
+        '賛成する' : 'to agree (〜に)',
+        '失敗する' : 'to fail; to be unsuccessful',
+        '徹夜する' : 'to stay up all night',
+        '反対する' : 'to oppose; to object to (〜に)',
+        '翻訳する' : 'to translate (〜を)'
+    }
+}
