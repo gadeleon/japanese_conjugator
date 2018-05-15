@@ -27,6 +27,21 @@ class GodanVerb(Word):
     def _get_stem(self, word):
         syl = word.decode('utf-8')[-1]
         base = u'{}'.format(word.decode('utf-8')[:-1])
-        if syl == u'つ':
-            stem = u'{}ち'.format(base)
+        if syl == u'う':
+            stem = u'い'
+        elif syl == u'す':
+            steam = u'し'
+        elif syl == u'く':
+            stem = u'き'
+        elif syl == u'つ':
+            stem = u'{}ち'
+        elif syl == u'ぬ':
+            stem = u'に'
+        elif syl == u'ふ':
+            stem == u'ひ'
+        elif syl == u'む':
+            stem = u'み'
+        elif syl == u'る':
+            stem = u'り'
+        stem = u'{}{}'.format(base, stem)
         return stem
