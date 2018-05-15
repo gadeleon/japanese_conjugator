@@ -29,6 +29,11 @@ class GodanVerb(Word):
         self.past_cas_pos = self._get_past_cas_pos(word)
         self.cas_neg = self._get_cas_neg(word)
         self.past_cas_neg = self._get_past_cas_neg(word)
+        self.caus_teinei_pos = self._get_caus_teinei_pos(word)
+        self.past_caus_teinei_pos = self._get_past_caus_teinei_pos(word)
+        self.caus_teinei_neg = self._get_caus_teinei_neg(word)
+        self.past_caus_teinei_neg = self._get_past_caus_teinei_neg(word)
+        self.caus_cas_pos = self._get_caus_cas_pos(word)
 
 
     def __str__(self):
@@ -155,3 +160,18 @@ class GodanVerb(Word):
 
     def _get_past_cas_neg(self, word):
         return self._get_past_nai_form(word)
+
+    def _get_caus_teinei_pos(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'せます')
+
+    def _get_past_caus_teinei_pos(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'せました')
+
+    def _get_caus_teinei_neg(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'ません')
+
+    def _get_past_caus_teinei_neg(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'ませんでした')
+
+    def _get_caus_cas_pos(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'せる')
