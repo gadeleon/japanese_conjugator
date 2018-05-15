@@ -27,6 +27,7 @@ class GodanVerb(Word):
         self.past_teinei_neg = self._get_past_teinei_neg(word)
         self.cas_pos = self._get_cas_pos(word)
         self.past_cas_pos = self._get_past_cas_pos(word)
+        self.cas_neg = self._get_cas_neg(word)
 
 
     def __str__(self):
@@ -38,12 +39,18 @@ class GodanVerb(Word):
         base = u'{}'.format(word.decode('utf-8')[:-1])
         if syl == u'う':
             stem = u'い'
-        elif syl == u'す':
-            steam = u'し'
         elif syl == u'く':
             stem = u'き'
+        elif syl == u'ぐ':
+            stem = u'ぎ'
+        elif syl == u'す':
+            stem = u'し'
+        elif syl == u'ず':
+            stem = u'じ'
         elif syl == u'つ':
-            stem = u'{}ち'
+            stem = u'ち'
+        elif syl == u'づ':
+            stem = u'ぢ'
         elif syl == u'ぬ':
             stem = u'に'
         elif syl == u'ふ':
@@ -57,6 +64,33 @@ class GodanVerb(Word):
 
     def _get_a_dan(self, word):
         # Get the A stage changes for a Godan Verb
+        syl = word.decode('utf-8')[-1]
+        base = word.decode('utf-8')[:-1]
+        if syl == u'う':
+            dan = u'わ'
+        elif syl == u'く':
+            dan = u'か'
+        elif syl == u'ぐ':
+            dan = u'が'
+        elif syl == u'す':
+            dan = u'さ'
+        elif syl == u'ず':
+            dan = u'ざ'
+        elif syl == u'つ':
+            dan = u'た'
+        elif syl == u'づ':
+            dan = u'だ'
+        elif syl == u'ぬ':
+            dan = u'な'
+        elif syl == u'ふ':
+            dan = u'は'
+        elif syl == u'ぶ':
+            dan = u'ば'
+        elif syl == u'む':
+            dan = u'ま'
+        elif syl == u'る':
+            dan = u'ら'
+        return u'{}{}'.format(base,dan)
 
     def _get_te_form(self, word):
         # exception
@@ -110,7 +144,7 @@ class GodanVerb(Word):
         return self.past_te
 
     def _get_cas_neg(self, word):
-        pass
+        return u'{}{}'.format(self._get_a_dan(word), u'ない')
 
     def _get_past_cas_neg(self, word):
         pass
