@@ -41,6 +41,10 @@ class GodanVerb(Word):
         self.past_pas_cas_pos = self._get_past_pas_cas_pos(word)
         self.pas_cas_neg = self._get_pas_cas_neg(word)
         self.past_pas_cas_neg = self._get_past_pas_cas_neg(word)
+        self.pas_teinei_pos = self._get_pas_teinei_pos(word)
+        self.past_pas_teinei_pos = self._get_past_pas_teinei_pos(word)
+        self.pas_teinei_neg = self._get_pas_teinei_neg(word)
+        self.past_pas_teinei_neg = self._get_past_pas_teinei_neg(word)
 
 
 
@@ -211,6 +215,19 @@ class GodanVerb(Word):
     def _get_past_pas_cas_neg(self, word):
         base = self._get_pas_cas_pos(word).encode('utf-8')
         return self._get_past_nai_form(base)
+
+    def _get_pas_teinei_pos(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'れます')
+
+    def _get_past_pas_teinei_pos(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'れました')
+
+    def _get_pas_teinei_neg(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'れません')
+
+    def _get_past_pas_teinei_neg(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'れませんでした')
+
 
 
 
