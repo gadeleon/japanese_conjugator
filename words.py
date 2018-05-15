@@ -28,6 +28,7 @@ class GodanVerb(Word):
         self.cas_pos = self._get_cas_pos(word)
         self.past_cas_pos = self._get_past_cas_pos(word)
         self.cas_neg = self._get_cas_neg(word)
+        self.past_cas_neg = self._get_past_cas_neg(word)
 
 
     def __str__(self):
@@ -92,6 +93,12 @@ class GodanVerb(Word):
             dan = u'ら'
         return u'{}{}'.format(base,dan)
 
+    def _get_nai_form(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'ない')
+
+    def _get_past_nai_form(self, word):
+        return u'{}{}'.format(self._get_a_dan(word), u'なかった')
+
     def _get_te_form(self, word):
         # exception
         if word.decode('utf-8') == u'行く':
@@ -144,7 +151,7 @@ class GodanVerb(Word):
         return self.past_te
 
     def _get_cas_neg(self, word):
-        return u'{}{}'.format(self._get_a_dan(word), u'ない')
+        return self._get_nai_form(word)
 
     def _get_past_cas_neg(self, word):
-        pass
+        return self._get_past_nai_form(word)
