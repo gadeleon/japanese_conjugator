@@ -45,12 +45,29 @@ class GodanVerb(Word):
         self.past_pas_teinei_pos = self._get_past_pas_teinei_pos(word)
         self.pas_teinei_neg = self._get_pas_teinei_neg(word)
         self.past_pas_teinei_neg = self._get_past_pas_teinei_neg(word)
+        self.causitive = self._get_causitive_hash(word)
 
 
 
 
     def __str__(self):
         return self.word
+
+    def _get_causitive_hash(self, word):
+        out = {}
+        out['teinei'] = {
+            'positive': self._get_caus_teinei_pos(word),
+            'negative': self._get_caus_teinei_pos(word),
+            'past_pos': self._get_past_caus_teinei_pos(word),
+            'past_neg': self._get_past_caus_teinei_neg(word)
+        }
+        out['casual'] = {
+            'positive': self._get_caus_cas_pos(word),
+            'negative': self._get_caus_cas_neg(word),
+            'past_pos': self._get_past_caus_cas_pos(word),
+            'past_neg': self._get_past_caus_cas_neg(word)
+        }
+        return out
 
     def _get_stem(self, word):
         # Get the I stage changes for a godan verb
