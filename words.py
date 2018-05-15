@@ -31,44 +31,13 @@ class GodanVerb(Word):
         self.past_teinei_neg = self._get_past_teinei_neg(word)
         self.causitive = self._get_causitive_hash(word)
         self.passive = self._get_passive_hash(word)
+        self.potential = self._get_potential_hash(word)
 
 
 
 
     def __str__(self):
         return self.word
-
-    def _get_causitive_hash(self, word):
-        out = {}
-        out['teinei'] = {
-            'positive': self._get_caus_teinei_pos(word),
-            'negative': self._get_caus_teinei_pos(word),
-            'past_pos': self._get_past_caus_teinei_pos(word),
-            'past_neg': self._get_past_caus_teinei_neg(word)
-        }
-        out['casual'] = {
-            'positive': self._get_caus_cas_pos(word),
-            'negative': self._get_caus_cas_neg(word),
-            'past_pos': self._get_past_caus_cas_pos(word),
-            'past_neg': self._get_past_caus_cas_neg(word)
-        }
-        return out
-
-    def _get_passive_hash(self, word):
-        out = {}
-        out['teinei'] = {
-            'positive': self._get_pas_teinei_pos(word),
-            'negative': self._get_pas_teinei_neg(word),
-            'past_pos': self._get_past_pas_teinei_pos(word),
-            'past_neg': self._get_past_pas_teinei_neg(word)
-        }
-        out['casual'] = {
-            'positive': self._get_pas_cas_pos(word),
-            'negative': self._get_pas_cas_neg(word),
-            'past_pos': self._get_past_pas_cas_pos(word),
-            'past_neg': self._get_past_pas_cas_neg(word)
-        }
-        return out
 
     def _get_stem(self, word):
         # Get the I stage changes for a godan verb
@@ -127,6 +96,36 @@ class GodanVerb(Word):
             dan = u'ま'
         elif syl == u'る':
             dan = u'ら'
+        return u'{}{}'.format(base,dan)
+
+    def _get_e_dan(self, word):
+        # Get the E stage changes for a Godan Verb
+        syl = word.decode('utf-8')[-1]
+        base = word.decode('utf-8')[:-1]
+        if syl == u'う':
+            dan = u'え'
+        elif syl == u'く':
+            dan = u'け'
+        elif syl == u'ぐ':
+            dan = u'げ'
+        elif syl == u'す':
+            dan = u'せ'
+        elif syl == u'ず':
+            dan = u'ぜ'
+        elif syl == u'つ':
+            dan = u'て'
+        elif syl == u'づ':
+            dan = u'で'
+        elif syl == u'ぬ':
+            dan = u'ね'
+        elif syl == u'ふ':
+            dan = u'へ'
+        elif syl == u'ぶ':
+            dan = u'べ'
+        elif syl == u'む':
+            dan = u'め'
+        elif syl == u'る':
+            dan = u'れ'
         return u'{}{}'.format(base,dan)
 
     def _get_nai_form(self, word):
@@ -201,12 +200,10 @@ class GodanVerb(Word):
         return u'{}{}'.format(self._get_a_dan(word), u'せた')
 
     def _get_caus_cas_neg(self, word):
-        base = self._get_caus_cas_pos(word).encode('utf-8')
-        return self._get_nai_form(base)
+        return u'{}{}'.format(self._get_a_dan(word), u'せない')
 
     def _get_past_caus_cas_neg(self, word):
-        base = self._get_caus_cas_pos(word).encode('utf-8')
-        return self._get_past_nai_form(base)
+        return u'{}{}'.format(self._get_a_dan(word), u'せなかった')
 
     def _get_caus_teinei_pos(self, word):
         return u'{}{}'.format(self._get_a_dan(word), u'せます')
@@ -220,6 +217,22 @@ class GodanVerb(Word):
     def _get_past_caus_teinei_neg(self, word):
         return u'{}{}'.format(self._get_a_dan(word), u'ませんでした')
 
+    def _get_causitive_hash(self, word):
+        out = {}
+        out['teinei'] = {
+            'positive': self._get_caus_teinei_pos(word),
+            'negative': self._get_caus_teinei_pos(word),
+            'past_pos': self._get_past_caus_teinei_pos(word),
+            'past_neg': self._get_past_caus_teinei_neg(word)
+        }
+        out['casual'] = {
+            'positive': self._get_caus_cas_pos(word),
+            'negative': self._get_caus_cas_neg(word),
+            'past_pos': self._get_past_caus_cas_pos(word),
+            'past_neg': self._get_past_caus_cas_neg(word)
+        }
+        return out
+
     def _get_pas_cas_pos(self, word):
         return u'{}{}'.format(self._get_a_dan(word), u'れる')
 
@@ -227,12 +240,10 @@ class GodanVerb(Word):
         return u'{}{}'.format(self._get_a_dan(word), u'れた')
 
     def _get_pas_cas_neg(self, word):
-        base = self._get_pas_cas_pos(word).encode('utf-8')
-        return self._get_nai_form(base)
+        return u'{}{}'.format(self._get_a_dan(word), u'れない')
 
     def _get_past_pas_cas_neg(self, word):
-        base = self._get_pas_cas_pos(word).encode('utf-8')
-        return self._get_past_nai_form(base)
+        return u'{}{}'.format(self._get_a_dan(word), u'れなかった')
 
     def _get_pas_teinei_pos(self, word):
         return u'{}{}'.format(self._get_a_dan(word), u'れます')
@@ -245,6 +256,49 @@ class GodanVerb(Word):
 
     def _get_past_pas_teinei_neg(self, word):
         return u'{}{}'.format(self._get_a_dan(word), u'れませんでした')
+
+    def _get_passive_hash(self, word):
+        out = {}
+        out['teinei'] = {
+            'positive': self._get_pas_teinei_pos(word),
+            'negative': self._get_pas_teinei_neg(word),
+            'past_pos': self._get_past_pas_teinei_pos(word),
+            'past_neg': self._get_past_pas_teinei_neg(word)
+        }
+        out['casual'] = {
+            'positive': self._get_pas_cas_pos(word),
+            'negative': self._get_pas_cas_neg(word),
+            'past_pos': self._get_past_pas_cas_pos(word),
+            'past_neg': self._get_past_pas_cas_neg(word)
+        }
+        return out
+
+    def _get_pot_cas_pos(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'る')
+
+    def _get_past_pot_cas_pos(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'た')
+
+    def _get_pot_cas_neg(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'ない')
+
+    def _get_past_pot_cas_neg(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'なかった')
+
+
+    def _get_potential_hash(self, word):
+        out = {}
+        out['teinei'] = {
+
+        }
+        out['casual'] = {
+            'positive': self._get_pot_cas_pos(word),
+            'negative': self._get_pot_cas_neg(word),
+            'past_pos': self._get_past_pot_cas_pos(word),
+            'past_neg': self._get_past_pot_cas_neg(word)
+
+        }
+        return out
 
 
 
