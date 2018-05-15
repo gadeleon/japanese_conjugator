@@ -29,23 +29,8 @@ class GodanVerb(Word):
         self.past_teinei_pos = self._get_past_teinei_pos(word)
         self.teinei_neg = self._get_teinei_neg(word)
         self.past_teinei_neg = self._get_past_teinei_neg(word)
-        self.caus_cas_pos = self._get_caus_cas_pos(word)
-        self.past_caus_cas_pos = self._get_past_caus_cas_pos(word)
-        self.caus_cas_neg = self._get_caus_cas_neg(word)
-        self.past_caus_cas_neg = self._get_past_caus_cas_neg(word)
-        self.caus_teinei_pos = self._get_caus_teinei_pos(word)
-        self.past_caus_teinei_pos = self._get_past_caus_teinei_pos(word)
-        self.caus_teinei_neg = self._get_caus_teinei_neg(word)
-        self.past_caus_teinei_neg = self._get_past_caus_teinei_neg(word)
-        self.pas_cas_pos = self._get_pas_cas_pos(word)
-        self.past_pas_cas_pos = self._get_past_pas_cas_pos(word)
-        self.pas_cas_neg = self._get_pas_cas_neg(word)
-        self.past_pas_cas_neg = self._get_past_pas_cas_neg(word)
-        self.pas_teinei_pos = self._get_pas_teinei_pos(word)
-        self.past_pas_teinei_pos = self._get_past_pas_teinei_pos(word)
-        self.pas_teinei_neg = self._get_pas_teinei_neg(word)
-        self.past_pas_teinei_neg = self._get_past_pas_teinei_neg(word)
         self.causitive = self._get_causitive_hash(word)
+        self.passive = self._get_passive_hash(word)
 
 
 
@@ -66,6 +51,22 @@ class GodanVerb(Word):
             'negative': self._get_caus_cas_neg(word),
             'past_pos': self._get_past_caus_cas_pos(word),
             'past_neg': self._get_past_caus_cas_neg(word)
+        }
+        return out
+
+    def _get_passive_hash(self, word):
+        out = {}
+        out['teinei'] = {
+            'positive': self._get_pas_teinei_pos(word),
+            'negative': self._get_pas_teinei_neg(word),
+            'past_pos': self._get_past_pas_teinei_pos(word),
+            'past_neg': self._get_past_pas_teinei_neg(word)
+        }
+        out['casual'] = {
+            'positive': self._get_pas_cas_pos(word),
+            'negative': self._get_pas_cas_neg(word),
+            'past_pos': self._get_past_pas_cas_pos(word),
+            'past_neg': self._get_past_pas_cas_neg(word)
         }
         return out
 
