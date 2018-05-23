@@ -285,10 +285,26 @@ class GodanVerb(Word):
     def _get_past_pot_cas_neg(self, word):
         return u'{}{}'.format(self._get_e_dan(word), u'なかった')
 
+    def _get_pot_teinei_pos(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'ます')
+
+    def _get_past_pot_teinei_pos(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'ました')
+
+    def _get_pot_teinei_neg(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'ません')
+
+    def _get_past_pot_teinei_neg(self, word):
+        return u'{}{}'.format(self._get_e_dan(word), u'ませんでした')
+
 
     def _get_potential_hash(self, word):
         out = {}
         out['teinei'] = {
+            'positive': self._get_pot_teinei_pos(word),
+            'negative': self._get_pot_teinei_neg(word),
+            'past_pos': self._get_past_pot_teinei_pos(word),
+            'past_neg': self._get_past_pot_teinei_neg(word)
 
         }
         out['casual'] = {
