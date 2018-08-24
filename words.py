@@ -143,7 +143,7 @@ class GodanVerb(Word):
         syl = word.decode('utf-8')[-1]
         base = u'{}'.format(word.decode('utf-8')[:-1])
         utte = [u'う', u'つ' ,u'る']
-        nde = [u'ぬ', u'ぶ', u'ぬ']
+        nde = [u'む', u'ぶ', u'ぬ']
         ite = [u'く']
         ide = [u'ぐ']
         shite = [u'す']
