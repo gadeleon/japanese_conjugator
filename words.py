@@ -29,7 +29,9 @@ class GodanVerb(Word):
         self.past_teinei_neg = self._get_past_teinei_neg(word)
         self.causitive = self._get_causitive_hash(word)
         self.passive = self._get_passive_hash(word)
+        self.causitive_passive = self._get_causpas_hash(word)
         self.potential = self._get_potential_hash(word)
+
 
 
 
@@ -313,6 +315,50 @@ class GodanVerb(Word):
 
         }
         return out
+
+    def _get_causpas_cas_pos(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'される')
+
+    def _get_past_causpas_cas_pos(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'された')
+
+    def _get_causpas_cas_neg(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'されない')
+
+    def _get_past_causpas_cas_neg(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'されなかった')
+
+    def _get_causpas_teinei_pos(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'されます')
+
+    def _get_past_causpas_teinei_pos(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'されました')
+
+    def _get_causpas_teinei_neg(self, word):
+        return '{}{}'.format(self._get_a_dan(word), 'されません')
+
+    def _get_past_causpas_teinei_neg(self, word):
+        # す　verbs are execptions and conjugated like ichidan verbs
+        return '{}{}'.format(self._get_a_dan(word), 'されませんでした')
+
+    def _get_causpas_hash(self, word):
+        out = {}
+        out['teinei'] = {
+            'positive': self._get_causpas_teinei_pos(word),
+            'negative': self._get_causpas_teinei_neg(word),
+            'past_pos': self._get_past_causpas_teinei_pos(word),
+            'past_neg': self._get_past_causpas_teinei_neg(word)
+        }
+
+        out['casual'] = {
+            'positive': self._get_causpas_cas_pos(word),
+            'negative': self._get_causpas_cas_neg(word),
+            'past_pos': self._get_past_causpas_cas_pos(word),
+            'past_neg': self._get_past_causpas_cas_neg(word)
+        }
+
+        return out
+
 
 
 
