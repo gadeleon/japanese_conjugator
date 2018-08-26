@@ -317,29 +317,53 @@ class GodanVerb(Word):
         return out
 
     def _get_causpas_cas_pos(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'される')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられる')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'される')
 
     def _get_past_causpas_cas_pos(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'された')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられた')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'された')
 
     def _get_causpas_cas_neg(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'されない')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられない')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'されない')
 
     def _get_past_causpas_cas_neg(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'されなかった')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられなかった')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'されなかった')
 
     def _get_causpas_teinei_pos(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'されます')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられます')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'されます')
 
     def _get_past_causpas_teinei_pos(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'されました')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられました')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'されました')
 
     def _get_causpas_teinei_neg(self, word):
-        return '{}{}'.format(self._get_a_dan(word), 'されません')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられません')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'されません')
 
     def _get_past_causpas_teinei_neg(self, word):
         # す　verbs are execptions and conjugated like ichidan verbs
-        return '{}{}'.format(self._get_a_dan(word), 'されませんでした')
+        if word[-1] == 'す':
+            return '{}{}'.format(self._get_a_dan(word), 'せられませんでした')
+        else:
+            return '{}{}'.format(self._get_a_dan(word), 'されませんでした')
 
     def _get_causpas_hash(self, word):
         out = {}
