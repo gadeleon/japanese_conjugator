@@ -31,6 +31,7 @@ class GodanVerb(Word):
         self.passive = self._get_passive_hash(word)
         self.causitive_passive = self._get_causpas_hash(word)
         self.potential = self._get_potential_hash(word)
+        self.volitional = self._get_volitional_hash(word)
 
 
 
@@ -126,7 +127,37 @@ class GodanVerb(Word):
             dan = 'め'
         elif syl == 'る':
             dan = 'れ'
-        return '{}{}'.format(base,dan)
+        return '{}{}'.format(base, dan)
+
+    def _get_o_dan(self, word):
+        # Get the O stage changes for a Godan Verb
+        syl = word[-1]
+        base = word[:-1]
+        if syl == 'う':
+            dan = 'お'
+        elif syl == 'く':
+            dan = 'こ'
+        elif syl == 'ぐ':
+            dan = 'ご'
+        elif syl == 'す':
+            dan = 'そ'
+        elif syl == 'ず':
+            dan = 'ぞ'
+        elif syl == 'つ':
+            dan = 'と'
+        elif syl == 'づ':
+            dan = 'ど'
+        elif syl == 'ぬ':
+            dan = 'の'
+        elif syl == 'ふ':
+            dan = 'ほ'
+        elif syl == 'ぶ':
+            dan = 'ぼ'
+        elif syl == 'む':
+            dan = 'も'
+        elif syl == 'る':
+            dan = 'ろ'
+        return '{}{}'.format(base, dan)
 
     def _get_nai_form(self, word):
         return '{}{}'.format(self._get_a_dan(word), 'ない')
@@ -379,6 +410,31 @@ class GodanVerb(Word):
             'negative': self._get_causpas_cas_neg(word),
             'past_pos': self._get_past_causpas_cas_pos(word),
             'past_neg': self._get_past_causpas_cas_neg(word)
+        }
+        return out
+
+    def _get_vol_cas_pos(self, word):
+        return '{}{}'.format(self._get_o_dan(word), 'う')
+
+    def _get_vol_cas_neg(self, word):
+        return '{}{}'.format(word, 'まい')
+
+    def _get_vol_teinei_pos(self, word):
+        tei = self._get_teinei_pos(word)
+        return '{}{}'.format(tei[:-1], 'しょう')
+
+    def _get_vol_teinei_neg(self, word):
+        return '{}{}'.format(self._get_teinei_pos(word), 'まい')
+
+    def _get_volitional_hash(self,word):
+        out = {}
+        out['teinei'] = {
+            'positive': self._get_vol_teinei_pos(word),
+            'negative': self._get_vol_teinei_neg(word)
+        }
+        out['casual'] = {
+            'positive': self._get_vol_cas_pos(word),
+            'negative': self._get_vol_cas_neg(word)
         }
 
         return out
