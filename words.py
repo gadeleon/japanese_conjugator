@@ -19,10 +19,7 @@ class GodanVerb(Word):
         self.stem = self._get_stem(word)
         self.te = self._get_te_form(word)
         self.past_te = self._get_past_te_form(word)
-        self.cas_pos = self._get_cas_pos(word)
-        self.past_cas_pos = self._get_past_cas_pos(word)
-        self.cas_neg = self._get_cas_neg(word)
-        self.past_cas_neg = self._get_past_cas_neg(word)
+        self.casual = self._get_cas_hash(word)
         self.teinei_pos = self._get_teinei_pos(word)
         self.past_teinei_pos = self._get_past_teinei_pos(word)
         self.teinei_neg = self._get_teinei_neg(word)
@@ -209,6 +206,15 @@ class GodanVerb(Word):
 
     def _get_past_cas_neg(self, word):
         return self._get_past_nai_form(word)
+
+    def _get_cas_hash(self, word):
+        out = {
+            'positive': self._get_cas_pos(word),
+            'negative': self._get_cas_neg(word),
+            'past_pos': self._get_past_cas_pos(word),
+            'past_neg': self._get_past_cas_neg(word)
+            }
+        return out
 
     def _get_teinei_pos(self, word):
         return '{}{}'.format(self.stem, 'ます')
