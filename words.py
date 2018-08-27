@@ -20,10 +20,7 @@ class GodanVerb(Word):
         self.te = self._get_te_form(word)
         self.past_te = self._get_past_te_form(word)
         self.casual = self._get_cas_hash(word)
-        self.teinei_pos = self._get_teinei_pos(word)
-        self.past_teinei_pos = self._get_past_teinei_pos(word)
-        self.teinei_neg = self._get_teinei_neg(word)
-        self.past_teinei_neg = self._get_past_teinei_neg(word)
+        self.teinei = self._get_teinei_hash(word)
         self.causitive = self._get_causitive_hash(word)
         self.passive = self._get_passive_hash(word)
         self.causitive_passive = self._get_causpas_hash(word)
@@ -227,6 +224,15 @@ class GodanVerb(Word):
 
     def _get_past_teinei_neg(self, word):
         return '{}{}'.format(self.stem, 'ませんでした')
+
+    def _get_teinei_hash(self, word):
+        out = {
+            'positive': self._get_teinei_pos(word),
+            'negative': self._get_teinei_neg(word),
+            'past_pos': self._get_past_teinei_pos(word),
+            'past_neg': self._get_past_teinei_neg(word)
+            }
+        return out
 
     def _get_caus_cas_pos(self, word):
         # Make an Ichidan Te-Form maker
