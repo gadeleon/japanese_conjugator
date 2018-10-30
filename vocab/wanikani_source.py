@@ -22,7 +22,7 @@ try:
     HEADERS['If-None-Match'] = r.headers['Etag']
 
 except FileNotFoundError:
-    pass
+    print('wanikanicache file not found, creating one!')
 
 r = requests.get('{}{}'.format(BASE,VOCAB), headers=HEADERS)
 
