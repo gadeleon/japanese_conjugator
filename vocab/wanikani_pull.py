@@ -20,7 +20,7 @@ src = json.loads(data)
 
 
 
-def _grab_word(partofspeech):
+def _get_word(partofspeech):
     '''
     Randomly picks a word from wanikani's extensive vocab, If partofspeech matches (ie verb, noun, etc),
     then it returns
