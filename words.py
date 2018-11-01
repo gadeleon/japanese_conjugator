@@ -140,12 +140,6 @@ class GodanVerb(Word):
         self.volitional = self._get_volitional_hash(word)
 
 
-
-
-
-    def __str__(self):
-        return self.word
-
     def _get_stem(self, word):
         # Get the I stage changes for a godan verb
         syl = word[-1]
