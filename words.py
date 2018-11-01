@@ -24,7 +24,7 @@ class IAdjective(Word):
 
 
     def _get_stem(self, word):
-        if word == 'いい':
+        if word[-2:] == 'いい':
             word = 'よい'
         return word[:-1]
 
