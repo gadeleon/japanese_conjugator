@@ -12,6 +12,51 @@ class Word(object):
     # def __repr__(self):
     #     return self.word
 
+class IAdjective(Word):
+    def __init__(self, word):
+        super(IAdjective, self).__init__(word)
+        self.stem = self._get_stem(word)
+        self.adverb = self._get_adverb(word)
+        self.te = self._get_te_hash(word)
+        self.casual = self._get_casual_hash(word)
+        self.teinei = self._get_teinei_hash(word)
+
+
+
+    def _get_stem(self, word):
+        return word[:-1]
+
+    def _get_adverb(self, word):
+        return '{}く'.format(self._get_stem(word))
+
+    def _get_nai_form(self, word):
+        return '{}ない'.format(self._get_adverb(word))
+
+    def _get_te_hash(self, word):
+        out = {}
+        out['positive'] = '{}て'.format(self._get_adverb(word)),
+        out['negative'] = '{}て'.format(self._get_adverb(self._get_nai_form(self._get_adverb(word))))
+        return out
+
+
+    def _get_casual_hash(self, word):
+        out = {}
+        out['positive'] = word
+        out['negative'] = self._get_nai_form(word)
+        out['past_pos'] = '{}かった'.format(self._get_stem(word))
+        out['past_neg'] = '{}かった'.format(self._get_stem(self._get_nai_form(word)))
+
+        return out
+
+    def _get_teinei_hash(self, word):
+        out = {}
+        out['positive'] = '{}です'.format(word)
+        out['negative'] = '()です'.format(self._get_nai_form(word))
+        out['past_pos'] = '{}かったです'.format(self._get_stem(word))
+        out['past_neg'] = '{}かったです'.format(self._get_stem(self._get_nai_form(word)))
+        return out
+
+
 
 class GodanVerb(Word):
     def __init__(self, word):
@@ -37,7 +82,7 @@ class GodanVerb(Word):
     def _get_stem(self, word):
         # Get the I stage changes for a godan verb
         syl = word[-1]
-        base = '{}'.format(word[:-1])
+        base = '{}'.format(word   [:-1])
         if syl == 'う':
             stem = 'い'
         elif syl == 'く':
