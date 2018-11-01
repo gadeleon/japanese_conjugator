@@ -24,7 +24,7 @@ class IAdjective(Word):
 
 
     def _get_stem(self, word):
-        if word == 'いい':
+        if word[-2:] == 'いい':
             word = 'よい'
         return word[:-1]
 
@@ -59,6 +59,71 @@ class IAdjective(Word):
         return out
 
 
+class NaAdjective(Word):
+    def __init__(self, word):
+        super(NaAdjective, self).__init__(word)
+        self.stem = self._get_stem(word)
+        self.adverb = self._get_adverb(word)
+        self.te = self._get_te_hash(word)
+        self.predicate = self._get_predicate_hash(word)
+        self.casual = self._get_cas_ending_hash(word)
+        self.teinei = self._get_teinei_ending_hash(word)
+
+
+    def _get_stem(self, word):
+        return word
+
+    def _get_adverb(self, word):
+        return '{}に'.format(word)
+
+    def _get_te_hash(self, word):
+        out = {}
+        out['positive'] = '{}で'.format(word)
+        out['negative'] = '{}ではなくて'.format(word)
+        out['col_neg'] = '{}じゃなくて'.format(word)
+        return out
+
+    def _get_predicate_hash(self, word):
+        '''
+        Na-Adjectives, when used before the noun they modify
+        take on this form. Note that な is a conjugation of the
+        verb だ. When you make it negative, the predicate
+        behaves like an い adjective.
+        :param word: word to conjugate
+        :return: dict of values
+        '''
+        out = {}
+        out['positive'] = '{}な'.format(word)
+        out['negative'] = '{}ではない'.format(word)
+        out['col_neg'] = '{}じゃない'.format(word)
+        return out
+
+    def _get_cas_ending_hash(self, word):
+        '''
+        Since Na adjectives use auxiliary verbs when they're not paired
+        next to a noun, you use them differently (like a noun) when
+        putting them at the end of the sentence.
+        :param word: word to conjugate
+        :return: dict of values
+        '''
+        out = {}
+        out['positive'] = '{}だ'.format(word)
+        out['negative'] = '{}ではない'.format(word)
+        out['col_neg'] = '{}じゃない'.format(word)
+        out['past_pos'] = '{}だった'.format(word)
+        out['past_neg'] = '{}ではなかった'.format(word)
+        out['past_col_neg'] = '{}じゃなかった'.format(word)
+        return out
+
+    def _get_teinei_ending_hash(self, word):
+        out = {}
+        out['positive'] = '{}です'.format(word)
+        out['negative'] = '{}ではありません'.format(word)
+        out['col_neg'] = '{}じゃありません'.format(word)
+        out['past_pos'] = '{}でした'.format(word)
+        out['past_neg'] = '{}ではありませんでした'.format(word)
+        out['past_col_neg'] = '{}じゃありませんでした'.format(word)
+        return out
 
 class GodanVerb(Word):
     def __init__(self, word):
@@ -74,12 +139,6 @@ class GodanVerb(Word):
         self.potential = self._get_potential_hash(word)
         self.volitional = self._get_volitional_hash(word)
 
-
-
-
-
-    def __str__(self):
-        return self.word
 
     def _get_stem(self, word):
         # Get the I stage changes for a godan verb
