@@ -24,6 +24,8 @@ class IAdjective(Word):
 
 
     def _get_stem(self, word):
+        if word == 'いい':
+            word = 'よい'
         return word[:-1]
 
     def _get_adverb(self, word):
@@ -51,7 +53,7 @@ class IAdjective(Word):
     def _get_teinei_hash(self, word):
         out = {}
         out['positive'] = '{}です'.format(word)
-        out['negative'] = '()です'.format(self._get_nai_form(word))
+        out['negative'] = '{}です'.format(self._get_nai_form(word))
         out['past_pos'] = '{}かったです'.format(self._get_stem(word))
         out['past_neg'] = '{}かったです'.format(self._get_stem(self._get_nai_form(word)))
         return out
