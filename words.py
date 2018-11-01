@@ -117,7 +117,7 @@ class NaAdjective(Word):
 
     def _get_teinei_ending_hash(self, word):
         out = {}
-        out['positive'] = '{)です'.format(word)
+        out['positive'] = '{}です'.format(word)
         out['negative'] = '{}ではありません'.format(word)
         out['col_neg'] = '{}じゃありません'.format(word)
         out['past_pos'] = '{}でした'.format(word)
