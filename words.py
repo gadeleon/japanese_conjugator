@@ -52,7 +52,10 @@ class IAdjective(Word):
 
     def _get_teinei_hash(self, word):
         out = {}
-        out['positive'] = '{}です'.format(word)
+        out['positive'] = {
+                            'present':'{}です'.format(word),
+                            'past':'{}かったです'.format(self._get_stem(word))
+                            }
         out['negative'] = '{}です'.format(self._get_nai_form(word))
         out['past_pos'] = '{}かったです'.format(self._get_stem(word))
         out['past_neg'] = '{}かったです'.format(self._get_stem(self._get_nai_form(word)))
