@@ -7,6 +7,10 @@ import pickle
 import random
 
 from pprint import pprint
+from datetime import datetime
+
+random.seed(datetime.now())
+
 
 cache = pickle.load(open('wanikanicache.pkl', 'rb'))
 
