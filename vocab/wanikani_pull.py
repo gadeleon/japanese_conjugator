@@ -28,7 +28,7 @@ def _get_word(partofspeech):
     '''
     Randomly picks a word from wanikani's extensive vocab, If partofspeech matches (ie verb, noun, etc),
     then it returns
-    :param partofspeech: ichidan_verb, na_adjective, i_adjective, etc.
+    :param partofspeech: ichidan verb, な adjective, い adjective, etc.
     :return:
     '''
     word = random.choice(src['data'])
