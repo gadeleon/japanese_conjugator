@@ -21,6 +21,7 @@ src = json.loads(data)
 
 # Desired Kanji is in data[N][data['slug']
 # Adj/Verb/Noun in data[N][data['parts_of_speech']
+# Readings are in data[N]['readings'][0]['reading']
 
 
 

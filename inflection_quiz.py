@@ -19,27 +19,24 @@ form = ['teinei', 'nai', 'te', 'casual', 'passive', 'potential', 'causitive' ]
 tense = ['present', 'past']
 positivity = ['positive', 'negative']
 
-def godan_quiz():
+def godan_quiz(f=''):
 	v = source._get_word('godan verb')
 	print(v)
 	word = words.GodanVerb(v) 
-	print(word)
-	pprint(vars(word))
-	#f = random.choice(list(vars(word)))
-	f = 'causitive_passive'
-	print(f)
+	# Pick a part of speech if not specified
+	if not f:
+		# Hardcode for now, 
+		#f = random.choice(list(vars(word)))
+		f = 'causitive_passive'
 	q = f'{f}, '
 	n = vars(word)[f]
 	ready = False
 	while not ready:
 		try:
 			if n.keys():
-				print('\n',n)
 				f = random.choice(list(n))
 				q += f'{f}, '
 				n = n[f]
-				print(n)
-
 			else:
 				ready = True
 		except AttributeError:

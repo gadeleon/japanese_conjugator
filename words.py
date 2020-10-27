@@ -533,26 +533,25 @@ class GodanVerb(Word):
         #     'past_pos': self._get_past_causpas_cas_pos(word),
         #     'past_neg': self._get_past_causpas_cas_neg(word)
         # }
-
         out['present'] = {
-            'positive' : {
-                'teinei' : self._get_causpas_teinei_pos(word),
-                'casual' : self._get_causpas_cas_pos(word)
+            'casual' : {
+                'positive' : self._get_causpas_cas_pos(word),
+                'negative' : self._get_causpas_cas_neg(word)
             },
-            'negative' : {
-                'teinei' : self._get_causpas_teinei_neg(word),
-                'casual' : self._get_causpas_cas_neg(word)
+            'teinei' : {
+                'positive' : self._get_causpas_teinei_pos(word),
+                'negative' : self._get_causpas_teinei_neg(word)
             }
 
         }
         out['past'] = {
-            'positive' : {
-                'teinei' : self._get_past_causpas_teinei_pos(word),
-                'casual' : self._get_past_causpas_cas_pos(word)
+            'casual' : {
+                'positive' : self._get_past_causpas_cas_pos(word),
+                'negative' : self._get_past_causpas_cas_neg(word)
             },
-            'negative' : {
-                'teinei' : self._get_past_causpas_teinei_neg(word),
-                'casual' : self._get_past_causpas_cas_neg(word)
+            'teinei' : {
+                'positive' : self._get_past_causpas_teinei_pos(word),
+                'negative' : self._get_past_causpas_teinei_neg(word)
             }
         }
         return out
