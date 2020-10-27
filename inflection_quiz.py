@@ -47,7 +47,7 @@ def godan_quiz(f=''):
 
 
 	#print(f'Form: {random.choice(form)}, Tense: {random.choice(tense)}, {random.choice(positivity)}')
-	print(f'\n{q[:-1]}')
+	print(f'\n{q[:-2]}')
 	correct = False
 	while not correct:
 		answer = input(f'{word}: ')
