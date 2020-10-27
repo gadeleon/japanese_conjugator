@@ -28,7 +28,7 @@ def godan_quiz(f=''):
 	if not f:
 		# Hardcode for now, 
 		#f = random.choice(list(vars(word)))
-		f = random.choice(['causitive_passive','potential'])
+		f = random.choice(['causitive_passive','potential', 'passive', 'causitive', 'casual', 'teinei'])
 	q = f'{f}, '
 	n = vars(word)[f]
 	ready = False
