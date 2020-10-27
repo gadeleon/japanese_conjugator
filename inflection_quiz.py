@@ -11,8 +11,9 @@ from datetime import datetime
 import words
 from vocab import wanikani_pull as source
 
-
-random.seed(datetime.now())
+s = datetime.now()
+print(f'Seed: {s!r}')
+random.seed(s)
 
 # Possible Qs
 form = ['teinei', 'nai', 'te', 'casual', 'passive', 'potential', 'causitive' ]
@@ -27,7 +28,7 @@ def godan_quiz(f=''):
 	if not f:
 		# Hardcode for now, 
 		#f = random.choice(list(vars(word)))
-		f = 'causitive_passive'
+		f = random.choice(['causitive_passive','potential'])
 	q = f'{f}, '
 	n = vars(word)[f]
 	ready = False
@@ -51,6 +52,11 @@ def godan_quiz(f=''):
 	while not correct:
 		answer = input(f'{word}: ')
 		if answer == excepted:
+			correct = True
+			return correct
+		elif answer == 'cheat':
+			print(excepted)
+		elif answer in excepted:
 			correct = True
 			return correct
 
