@@ -473,64 +473,87 @@ class GodanVerb(Word):
             return '{}{}'.format(self._get_a_dan(word), 'せられる')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'される')
+            
 
     def _get_past_causpas_cas_pos(self, word):
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられた')
+            return '{}{}'.format(self._get_a_dan(word), 'させられた')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'された')
 
     def _get_causpas_cas_neg(self, word):
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられない')
+            return '{}{}'.format(self._get_a_dan(word), 'させられない')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'されない')
 
     def _get_past_causpas_cas_neg(self, word):
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられなかった')
+            return '{}{}'.format(self._get_a_dan(word), 'させられなかった')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'されなかった')
 
     def _get_causpas_teinei_pos(self, word):
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられます')
+            return '{}{}'.format(self._get_a_dan(word), 'させられます')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'されます')
 
     def _get_past_causpas_teinei_pos(self, word):
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられました')
+            return '{}{}'.format(self._get_a_dan(word), 'させられました')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'されました')
 
     def _get_causpas_teinei_neg(self, word):
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられません')
+            return '{}{}'.format(self._get_a_dan(word), 'させられません')
         else:
             return '{}{}'.format(self._get_a_dan(word), 'されません')
 
     def _get_past_causpas_teinei_neg(self, word):
         # す　verbs are execptions and conjugated like ichidan verbs
         if word[-1] == 'す':
-            return '{}{}'.format(self._get_a_dan(word), 'せられませんでした')
+            return '{}{}'.format(self._get_a_dan(word), 'させられませんでした')
         else:
-            return '{}{}'.format(self._get_a_dan(word), 'されませんでした')
+            return '{}{}'.format(self._get_a_dan(word), 'せられませんでした')
 
     def _get_causpas_hash(self, word):
         out = {}
-        out['teinei'] = {
-            'positive': self._get_causpas_teinei_pos(word),
-            'negative': self._get_causpas_teinei_neg(word),
-            'past_pos': self._get_past_causpas_teinei_pos(word),
-            'past_neg': self._get_past_causpas_teinei_neg(word)
-        }
+        # out['teinei'] = {
+        #     'positive': self._get_causpas_teinei_pos(word),
+        #     'negative': self._get_causpas_teinei_neg(word),
+        #     'past_pos': self._get_past_causpas_teinei_pos(word),
+        #     'past_neg': self._get_past_causpas_teinei_neg(word)
+        # }
 
-        out['casual'] = {
-            'positive': self._get_causpas_cas_pos(word),
-            'negative': self._get_causpas_cas_neg(word),
-            'past_pos': self._get_past_causpas_cas_pos(word),
-            'past_neg': self._get_past_causpas_cas_neg(word)
+        # out['casual'] = {
+        #     'positive': self._get_causpas_cas_pos(word),
+        #     'negative': self._get_causpas_cas_neg(word),
+        #     'past_pos': self._get_past_causpas_cas_pos(word),
+        #     'past_neg': self._get_past_causpas_cas_neg(word)
+        # }
+
+        out['present'] = {
+            'positive' : {
+                'teinei' : self._get_causpas_teinei_pos(word),
+                'casual' : self._get_causpas_cas_pos(word)
+            },
+            'negative' : {
+                'teinei' : self._get_causpas_teinei_neg(word),
+                'casual' : self._get_causpas_cas_neg(word)
+            }
+
+        }
+        out['past'] = {
+            'positive' : {
+                'teinei' : self._get_past_causpas_teinei_pos(word),
+                'casual' : self._get_past_causpas_cas_pos(word)
+            },
+            'negative' : {
+                'teinei' : self._get_past_causpas_teinei_neg(word),
+                'casual' : self._get_past_causpas_cas_neg(word)
+            }
         }
         return out
 
