@@ -19,6 +19,12 @@ class IchidanVerb(words.Word):
         if not from_godan:
             self.causitive = self._get_causitive(word)
             self.causitive_hash = self._get_inflection_hash(self.causitive)
+            self.passive = self._get_passive(word)
+            self.passive_hash = self._get_inflection_hash(self.passive)
+            self.potential = self._get_potential(word)
+            self.potential_hash = self._get_inflection_hash(self.potential)
+            self.causitive_passive = self._get_caus_pas(word)
+            self.causitive_passive_hash = self._get_inflection_hash(self.causitive_passive) 
 
 
     def _get_stem(self, word):
@@ -87,6 +93,15 @@ class IchidanVerb(words.Word):
     def _get_causitive(self, word):
         return f'{self._get_stem(word)}させる'
 
+    def _get_passive(self, word):
+        return f'{self._get_stem(word)}られる'
+
+    def _get_potential(self, word):
+        return f'{self._get_stem(word)}られる'
+
+    def _get_caus_pas(self, word):
+        return f'{self._get_stem(word)}させられる'
+
     def _get_inflection_hash(self, word):
         out = {}
         out['casual'] = self._get_cas_hash(word)
@@ -94,4 +109,9 @@ class IchidanVerb(words.Word):
         return out
 
 
+if __name__ == '__main__':
+    a = IchidanVerb('食べる')
+    from pprint import pprint
+    pprint(a.causitive_passive)
+    pprint(a.causitive_passive_hash)
 
