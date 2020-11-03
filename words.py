@@ -2,7 +2,6 @@
 Object for nouns, verbs, adjectives.
 '''
 
-import ichidanverb
 
 class Word(object):
     def __init__(self, word):
@@ -131,6 +130,7 @@ class NaAdjective(Word):
         return out
 
 class GodanVerb(Word):
+    import ichidanverb
     def __init__(self, word):
         super(GodanVerb, self).__init__(word)
         self.stem = self._get_stem(word)
@@ -696,8 +696,7 @@ class GodanVerb(Word):
 if __name__ == '__main__':
     from pprint import pprint
     a = GodanVerb('使う')
-    pprint(vars(a.i_caus))
-    pprint(a.i_caus.casual)
+    pprint(vars(a))
 
 
 

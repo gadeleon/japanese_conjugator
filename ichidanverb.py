@@ -25,7 +25,7 @@ class IchidanVerb(words.Word):
             self.potential_hash = self._get_inflection_hash(self.potential)
             self.causitive_passive = self._get_caus_pas(word)
             self.causitive_passive_hash = self._get_inflection_hash(self.causitive_passive)
-            self.volitional = self._get_volitional(word) 
+            self.volitional = self._get_volitional(word)
 
 
     def _get_stem(self, word):
