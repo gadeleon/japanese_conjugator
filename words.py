@@ -2,6 +2,8 @@
 Object for nouns, verbs, adjectives.
 '''
 
+import ichidanverb
+
 class Word(object):
     def __init__(self, word):
         self.word = word
@@ -141,6 +143,7 @@ class GodanVerb(Word):
         self.causitive_passive = self._get_causpas_hash(word)
         self.potential = self._get_potential_hash(word)
         self.volitional = self._get_volitional_hash(word)
+        # self.i_caus = ichidanverb.IchidanVerb(self._get_caus_cas_pos(word), from_godan=True)
 
 
     def _get_stem(self, word):
@@ -690,6 +693,11 @@ class GodanVerb(Word):
 
 
 
+if __name__ == '__main__':
+    from pprint import pprint
+    a = GodanVerb('使う')
+    pprint(vars(a.i_caus))
+    pprint(a.i_caus.casual)
 
 
 

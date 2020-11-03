@@ -24,7 +24,8 @@ class IchidanVerb(words.Word):
             self.potential = self._get_potential(word)
             self.potential_hash = self._get_inflection_hash(self.potential)
             self.causitive_passive = self._get_caus_pas(word)
-            self.causitive_passive_hash = self._get_inflection_hash(self.causitive_passive) 
+            self.causitive_passive_hash = self._get_inflection_hash(self.causitive_passive)
+            self.volitional = self._get_volitional(word) 
 
 
     def _get_stem(self, word):
@@ -108,10 +109,12 @@ class IchidanVerb(words.Word):
         out['teinei'] = self._get_teinei_hash(word)
         return out
 
+    def _get_volitional(self, word):
+        return f'{self._get_stem(word)}よう'
+
 
 if __name__ == '__main__':
     a = IchidanVerb('食べる')
     from pprint import pprint
-    pprint(a.causitive_passive)
-    pprint(a.causitive_passive_hash)
+    pprint(a.volitional)
 
