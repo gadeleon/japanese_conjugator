@@ -11,7 +11,7 @@ from datetime import datetime
 import words
 from vocab import wanikani_pull as source
 
-s = datetime.now()
+s = int(datetime.now().timestamp())
 print(f'Seed: {s!r}')
 random.seed(s)
 
